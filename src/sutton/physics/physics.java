@@ -1,3 +1,5 @@
+package sutton.physics;
+
 import java.util.ArrayList;
 import java.util.Random;
 

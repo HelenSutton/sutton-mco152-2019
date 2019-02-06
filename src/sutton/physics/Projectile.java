@@ -1,3 +1,5 @@
+package sutton.physics;
+
 public class Projectile {
     private final double velocity;
     private final double degrees;
