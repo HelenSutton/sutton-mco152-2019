@@ -11,10 +11,10 @@ public class physics {
          final int minVelocity = 50;
          final int maxDegrees = 150;
          final int minDegrees = 30;
+        Random r = new Random();
 
          for (int i = 0; i <= 120; i ++){
              plist.forEach((n) -> n.addTime(1));
-             Random r = new Random();
              int randomAmount = r.nextInt(6);
              for(int j = 0; j < randomAmount; j++){
                  int velocity = r.nextInt((maxVelocity - minVelocity) + 1) + minVelocity;
