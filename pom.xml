@@ -7,6 +7,12 @@
     <groupId>groupId</groupId>
     <artifactId>sutton-mco152-2019</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mavem.compiler.source>1.8</mavem.compiler.source>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
