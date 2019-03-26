@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class GolfCourseComponent extends JComponent {
     double x = 0.0;
-    Projectile ball = new Projectile(1,90);
+    private Projectile ball = new Projectile(80,45);
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
@@ -47,10 +47,13 @@ public class GolfCourseComponent extends JComponent {
 
         graphics.setColor(Color.white);
         double ballX=ball.getX()+30;
-        double ballY = (ground-15)+ball.getY();
+        double ballY = (ground-15)-ball.getY();
 
         graphics.fillOval((int) (ballX), (int) (ballY),15,15);
-        ball.addTime(.02);
+        if (ball.getY() >= 0) {
+            ball.addTime(.02);
+        }
+
 
         //draw flagg pole
         int poleheight = 40;
@@ -65,6 +68,7 @@ public class GolfCourseComponent extends JComponent {
         graphics.fillPolygon(new int[] {poleplacement-flaglength,poleplacement,poleplacement}, new int[] {ground-poleheight+flagheight/2,ground-poleheight,ground-poleheight+flagheight},3);
 
         repaint();
+
 
     }
 }
