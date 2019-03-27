@@ -7,7 +7,11 @@ import java.awt.*;
 
 public class GolfCourseComponent extends JComponent {
     double x = 0.0;
-    private Projectile ball = new Projectile(80,45);
+    private Projectile ball = new Projectile(0,0);
+    public void setBall(Projectile ball){
+        this.ball=ball;
+    }
+
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
