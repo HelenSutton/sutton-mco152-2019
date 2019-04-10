@@ -16,11 +16,11 @@ public class Projectile {
         time += deltaTime;
     }
     public double getX (){
-        return Math.cos(Math.toRadians(degrees)) * velocity * time;
+        return (Math.cos(Math.toRadians(degrees)) * velocity * time);
     }
 
     public double getY(){
-        return Math.sin(Math.toRadians(degrees)) * velocity * time - 9.8 * .5 * time * time;
+        return (Math.sin(Math.toRadians(degrees)) * velocity * time -( 9.8 * .5 * time * time));
     }
     @Override
     public String toString(){
