@@ -19,6 +19,10 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mavem.compiler.source>1.8</mavem.compiler.source>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
