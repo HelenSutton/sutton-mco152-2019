@@ -1,11 +1,24 @@
 package sutton.net;
 
 public class Photo {
-    int albumId;
-    int id;
-    String title;
-    String url;
-    String thumbnailUrl;
+    private int id;
+    private int albumId;
+    private String title;
+
+    public String getUrl() {
+        return url;
+    }
+
+    private String url;
+    private String thumbnailUrl;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
