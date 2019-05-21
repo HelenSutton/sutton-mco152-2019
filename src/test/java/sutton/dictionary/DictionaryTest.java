@@ -9,9 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class DictionaryTest {
     @Test
     public void contains_true() throws FileNotFoundException {
+        long time = System.currentTimeMillis();
         Dictionary dictionary = new Dictionary();
+        System.out.println(System.currentTimeMillis()-time);
 
-        assertTrue(dictionary.contains("Wonderful"));
+        assertTrue(dictionary.contains("aa"));
     }
 
     @Test

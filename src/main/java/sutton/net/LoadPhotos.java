@@ -1,7 +1,10 @@
 package sutton.net;
 
+import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import org.apache.commons.lang3.time.StopWatch;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +29,7 @@ public class LoadPhotos extends JFrame {
 
     public void fillLIst(){
         String[] PhotoTitles = new String[PhotoList.size()];
-       for(int i = 0; i<PhotoList.size() - 1; i++) {
+       for(int i = 0; i<PhotoList.size(); i++) {
            PhotoTitles[i] = PhotoList.get(i).getTitle();
        }
        list.setListData(PhotoTitles);
@@ -77,7 +80,7 @@ public class LoadPhotos extends JFrame {
         JButton next = new JButton("next");
         controls.add(next);
         next.addActionListener(e->{
-            if (photonumber+1 <= PhotoList.size())
+            if (photonumber < PhotoList.size()-1)
             photonumber++;
             try {
                 updatephoto();
@@ -89,17 +92,24 @@ public class LoadPhotos extends JFrame {
         root.add(controls, BorderLayout.SOUTH);
 
 
-         JsonPlaceholderClient client = new JsonPlaceholderClient();
+        JsonPlaceholderClient client = new JsonPlaceholderClient();
+        StopWatch stopwatch = new StopWatch();
+        stopwatch.start();
         Disposable disposable = client.getPhotoList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.trampoline())
                .subscribe(new Consumer<PhotoList>() {
                     @Override
                     public void accept (PhotoList photos) throws MalformedURLException {
                         PhotoList = photos;
-                        imageLabel.setIcon(new ImageIcon(new URL(photos.get(photonumber).getUrl())));
+                        updatephoto();
+                        fillLIst();
                     }
                 });
+        stopwatch.stop();
+        System.out.println(stopwatch.getTime());
 
-        fillLIst();
+
         JScrollPane scroll = new JScrollPane(list);
 
 
@@ -107,7 +117,7 @@ public class LoadPhotos extends JFrame {
 
 
         root.add(imageLabel, BorderLayout.CENTER);
-        updatephoto();
+
         setContentPane(root);
     }
 
